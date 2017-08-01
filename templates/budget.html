@@ -93,6 +93,14 @@
                 entry.append(delButton);
             }
 
+            function displayUncategorized(amount) {
+                var table = document.getElementById("dansCategoryExtravaganza");
+                var entry = table.insertRow();
+
+                addCell(entry, "Uncategorized");
+                addCell(entry, "$" + amount);
+            }
+
             function displayPurs(pur) {
                 var table = document.getElementById("dansPurchaseExtravaganza");
                 var entry = table.insertRow();
@@ -155,13 +163,17 @@
                     });
                 });
 
+                var uncategorized = 0;
                 filterPurchases.forEach(function(pur) {
                     displayPurs(pur);
+                    uncategorized += pur.amount;
                 });
 
                 categories.forEach(function(cat) {
                     displayCats(cat);
                 });
+
+                displayUncategorized(uncategorized);
             }
 
 
